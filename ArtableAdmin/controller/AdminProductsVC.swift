@@ -11,6 +11,7 @@ import UIKit
 class AdminProductsVC: ProductsVC {
     
     var selectedProduct: Product?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +29,13 @@ class AdminProductsVC: ProductsVC {
     
     
     @objc func editCategory(){
+        
         performSegue(withIdentifier: Segues.ToEditCategory, sender: self)
         
     }
     
     @objc func newProduct(){
+        selectedProduct = nil 
         performSegue(withIdentifier: Segues.ToAddEditProduct, sender: self)
     }
     
@@ -42,6 +45,7 @@ class AdminProductsVC: ProductsVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == Segues.ToAddEditProduct {
             if let destination = segue.destination as? AddEditProductsVC{
                 destination.selectedCategory = category
@@ -52,6 +56,14 @@ class AdminProductsVC: ProductsVC {
                 destination.categoryToEdit = category
             }
         }
+    }
+    
+    override func productFavorited(product: Product) {
+        return
+    }
+    
+    override func productAddToCart(product: Product) {
+        return
     }
     
 

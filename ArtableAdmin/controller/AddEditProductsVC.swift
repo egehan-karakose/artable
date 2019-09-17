@@ -33,7 +33,11 @@ class AddEditProductsVC: UIViewController {
         
         
         if let product = productToEdit {
+            
             productNameTxt.text = product.name
+            productDescrpitionTxt.text = product.productDescription
+            productPriceTxt.text = String(product.price)
+            
             addBtn.setTitle("Save Changes", for: .normal)
             
             if let url = URL(string: product.imageUrl){
@@ -42,6 +46,8 @@ class AddEditProductsVC: UIViewController {
             }
         }
     }
+    
+   
     
 
     @objc func imgTapped(_ tap: UITapGestureRecognizer){
@@ -52,7 +58,7 @@ class AddEditProductsVC: UIViewController {
     
   
     @IBAction func addProductClicked(_ sender: Any) {
-        activityIndicator.startAnimating()
+        
         uploadImageThenDocument()
     }
     
@@ -61,12 +67,17 @@ class AddEditProductsVC: UIViewController {
     
     func uploadImageThenDocument(){
         guard let image = productImageView.image ,
-            let productName = productNameTxt.text , productName.isNotEmpty else {
-                simpleAlert(title: "Error" , msg: "Must add category image and name" )
+            let productName = productNameTxt.text ,
+            productName.isNotEmpty,
+            let productDescription = productDescrpitionTxt.text,
+            productDescription.isNotEmpty,
+            let productPriceString = productPriceTxt.text,
+            productPriceString.isNotEmpty
+        else {
+                simpleAlert(title: "Error" , msg: "Must fill all required fields" )
                 return
-                
-                
         }
+        activityIndicator.startAnimating()
         
         //        Step 1 : Turn image into Data
         guard let imageData = image.jpegData(compressionQuality: 0.2) else {return}

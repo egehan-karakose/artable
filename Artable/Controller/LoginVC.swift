@@ -55,6 +55,7 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func guessClicked(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
 }

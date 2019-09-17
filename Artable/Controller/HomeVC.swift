@@ -21,6 +21,7 @@ class HomeVC: UIViewController {
     var db : Firestore!
     var listener : ListenerRegistration!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
@@ -71,6 +72,9 @@ class HomeVC: UIViewController {
         setCategoriesListener()
         if let user = Auth.auth().currentUser , !user.isAnonymous{
            loginOutButton.title = "Logout"
+            if UserService.userListener == nil{
+                UserService.getCurrentUser()
+            }
             
         }else{
             loginOutButton.title = "Login"
@@ -120,7 +124,17 @@ class HomeVC: UIViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: StoryboardId.LoginVC)
         present(controller, animated: true, completion: nil)
     }
-
+    
+    
+    
+    @IBAction func favoritesClicked(_ sender: Any) {
+        performSegue(withIdentifier: Segues.ToFavorites, sender: self)
+    }
+    
+    
+    
+    
+    
     @IBAction func loginOutClicked(_ sender: Any) {
         
         guard let user = Auth.auth().currentUser else { return }
@@ -129,6 +143,7 @@ class HomeVC: UIViewController {
         }else{
             do {
                 try Auth.auth().signOut()
+                UserService.logoutUser()
                 Auth.auth().signInAnonymously { (result, error) in
                     if let error = error {
                         Auth.auth().handleFireAuthError(error: error, vc:self)
@@ -211,6 +226,11 @@ extension HomeVC : UICollectionViewDelegate, UICollectionViewDataSource , UIColl
         if segue.identifier == Segues.ToProducts{
             if let destination = segue.destination as? ProductsVC{
                destination.category = selectedCategory
+            }
+        }else if segue.identifier == Segues.ToFavorites {
+            if let desitination = segue.destination as? ProductsVC{
+                desitination.category  = selectedCategory
+                desitination.showFavorites = true
             }
         }
     }

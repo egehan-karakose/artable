@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailVC" customModule="Artable" customModuleProvider="target">
             <connections>
-                <outlet property="bgView" destination="xbv-l9-ySm" id="U57-r3-XKe"/>
+                <outlet property="bgView" destination="xbv-l9-ySm" id="tAl-nS-wxa"/>
                 <outlet property="productDesc" destination="ccO-Ys-gqw" id="MSI-rd-nYn"/>
                 <outlet property="productImage" destination="wow-c7-gnP" id="d1Q-8K-hKt"/>
                 <outlet property="productPrice" destination="Z9K-jU-Pbb" id="50Z-kE-CHh"/>
@@ -27,7 +27,7 @@
             <subviews>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbv-l9-ySm">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GgT-zR-jNh">
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GgT-zR-jNh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>

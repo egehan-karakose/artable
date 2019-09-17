@@ -12,6 +12,10 @@ import Kingfisher
 
 class ProductDetailVC: UIViewController {
 
+    
+    
+  
+    
     @IBOutlet weak var bgView: UIVisualEffectView!
     @IBOutlet weak var productDesc: UILabel!
     @IBOutlet weak var productPrice: UILabel!
@@ -48,9 +52,11 @@ class ProductDetailVC: UIViewController {
 
 
     @IBAction func addCartClicked(_ sender: Any) {
-        
-        
-        
+        if UserService.isGuest{
+            self.simpleAlert(title: "Hi Friend", msg: "Just Look")
+            return
+        }
+        StripeCart.addItemToCart(item: product)
         dismiss(animated: true, completion: nil)
     }
     

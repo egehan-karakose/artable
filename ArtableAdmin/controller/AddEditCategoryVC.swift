@@ -49,7 +49,7 @@ class AddEditCategoryVC: UIViewController {
     }
     
     @IBAction func addCategoryClicked(_ sender: Any) {
-        activityIndicator.startAnimating()
+        
         uploadImageThenDocument()
         
     }
@@ -62,6 +62,7 @@ class AddEditCategoryVC: UIViewController {
                 
                 
         }
+        activityIndicator.startAnimating()
         
         //        Step 1 : Turn image into Data
         guard let imageData = image.jpegData(compressionQuality: 0.2) else {return}
